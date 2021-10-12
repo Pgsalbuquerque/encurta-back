@@ -1,6 +1,9 @@
-spring.datasource.url=jdbc:postgresql://host:5432/nomebanco  #host = host do banco || nomebanco = nome do banco
-spring.datasource.username=nomeacesso    #credencial conexao nome
-spring.datasource.password=senhabanco  #credencial conexao senha
+#host = host do banco || nomebanco = nome do banco
+spring.datasource.url=jdbc:postgresql://host:5432/nomebanco
+#credencial conexao nome
+spring.datasource.username=nomeacesso
+#credencial conexao senha
+spring.datasource.password=senhabanco
 
 spring.jpa.show-sql=false
 spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
