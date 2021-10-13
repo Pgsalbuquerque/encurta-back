@@ -1,6 +1,6 @@
 package com.zg.encurtador.domain.services;
 
-import java.util.UUID;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,14 +18,28 @@ public class ShortenedLinkService {
 	@Autowired
 	private ShortenedLinkRepository shortenedLinkRepository;
 	
+	private String generateShortenLink() {
+		String shortenedLink = "";
+		
+		for (int count = 0; count < 5; count++) {
+			Random random = new Random();
+			int i = random.nextInt(75) + 48;
+			while (i >= 58 && i <= 64 || i >= 91 && i <= 96) {
+				i = random.nextInt(75) + 48;
+			}
+			shortenedLink += (char) (i);
+		}
+		return shortenedLink;
+	}
+	
 	public ResponseEntity<ShortenedLinkResponse> shorten(ShortenedLinkRequest original) {
 		String originalLink = original.getLink();
 		
-		String possiblelink = UUID.randomUUID().toString();
+		String possiblelink = generateShortenLink();
 		
 		int count = 0;
 		while (count < 5 && shortenedLinkRepository.getByShortened(possiblelink) != null) {
-			possiblelink = UUID.randomUUID().toString();
+			possiblelink = generateShortenLink();
 			count++;
 		}
 		
