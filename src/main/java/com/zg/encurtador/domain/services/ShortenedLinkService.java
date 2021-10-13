@@ -64,7 +64,7 @@ public class ShortenedLinkService {
     	}
     	
     	ShortenedLinkResponse shortenedLinkResponse = new ShortenedLinkResponse(shortenedLink.getOriginal());
-    	response.addHeader("Cache-Control", "max-age=3600, stale-while-validade=60, no-transform");
+    	response.addHeader("Cache-Control", "s-maxage=3600, stale-while-validade");
     	return ResponseEntity.ok(shortenedLinkResponse);
     }
 }
