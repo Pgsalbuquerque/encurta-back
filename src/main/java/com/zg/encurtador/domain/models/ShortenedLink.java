@@ -38,6 +38,11 @@ public class ShortenedLink {
 	public void setOriginal(String original) {
 		this.original = original;
 	}
+
+	@Override
+	public String toString() {
+		return "ShortenedLink [shortened=" + shortened + ", original=" + original + "]";
+	}
 	
 	
 }

@@ -7,5 +7,5 @@ import com.zg.encurtador.domain.models.ShortenedLink;
 
 @Repository
 public interface ShortenedLinkRepository extends JpaRepository<ShortenedLink, String> {
-
+	ShortenedLink getByShortened(String shortened);
 }

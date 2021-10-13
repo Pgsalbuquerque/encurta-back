@@ -4,19 +4,19 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
-public class ShrotenedLinkRequest {
+public class ShortenedLinkRequest {
 	
 	@NotBlank
 	@Size(min = 4, max = 255)
-	@Pattern(regexp = "^(?:http(s)?:\\/\\/)?[\\w.-]+(?:\\.[\\w\\.-]+)+[\\w\\-\\._~:/?#[\\]@!\\$&'\\(\\)\\*\\+,;=.]+$", message = "Invalid Link")
+	@Pattern(regexp = "^(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]", message = "Invalid Link")
 	private String link;
 	
 	
 	
-	public ShrotenedLinkRequest() {
+	public ShortenedLinkRequest() {
 	}
 
-	public ShrotenedLinkRequest(String link) {
+	public ShortenedLinkRequest(String link) {
 		this.link = link;
 	}
 
