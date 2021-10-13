@@ -11,8 +11,6 @@ public class ShortenedLinkRequest {
 	@Pattern(regexp = "^(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]", message = "Invalid Link")
 	private String link;
 	
-	
-	
 	public ShortenedLinkRequest() {
 	}
 

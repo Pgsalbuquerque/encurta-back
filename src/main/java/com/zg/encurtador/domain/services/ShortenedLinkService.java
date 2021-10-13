@@ -39,4 +39,15 @@ public class ShortenedLinkService {
 		ShortenedLinkResponse shortenedLinkResponse = new ShortenedLinkResponse(possiblelink);
 		return ResponseEntity.ok(shortenedLinkResponse);
 	}
+	
+    public ResponseEntity<ShortenedLinkResponse> getOriginal(String shortened) {
+    	ShortenedLink shortenedLink = shortenedLinkRepository.getByShortened(shortened);
+    	
+    	if (shortenedLink == null) {
+    		throw new ResponseException(HttpStatus.BAD_REQUEST, "Invalid Link");
+    	}
+    	
+    	ShortenedLinkResponse shortenedLinkResponse = new ShortenedLinkResponse(shortenedLink.getOriginal());
+    	return ResponseEntity.ok(shortenedLinkResponse);
+    }
 }
