@@ -1,5 +1,6 @@
 package com.zg.encurtador.web.controllers;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +26,8 @@ public class ShortenLinkController {
 	}
 	
 	@GetMapping("original")
-	public ResponseEntity<ShortenedLinkResponse> getOriginal(@RequestParam(name = "shortened") String shortened) {
-		return shortenedLinkService.getOriginal(shortened);
+	public ResponseEntity<ShortenedLinkResponse> getOriginal(@RequestParam(name = "shortened") String shortened, HttpServletResponse response) {
+		return shortenedLinkService.getOriginal(shortened, response);
 	}
 	
 }

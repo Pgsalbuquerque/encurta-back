@@ -2,6 +2,8 @@ package com.zg.encurtador.domain.services;
 
 import java.util.Random;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -54,7 +56,7 @@ public class ShortenedLinkService {
 		return ResponseEntity.ok(shortenedLinkResponse);
 	}
 	
-    public ResponseEntity<ShortenedLinkResponse> getOriginal(String shortened) {
+    public ResponseEntity<ShortenedLinkResponse> getOriginal(String shortened, HttpServletResponse response) {
     	ShortenedLink shortenedLink = shortenedLinkRepository.getByShortened(shortened);
     	
     	if (shortenedLink == null) {
@@ -62,6 +64,7 @@ public class ShortenedLinkService {
     	}
     	
     	ShortenedLinkResponse shortenedLinkResponse = new ShortenedLinkResponse(shortenedLink.getOriginal());
+    	response.addHeader("Cache-Control", "max-age=3600, stale-while-validade=60, no-transform");
     	return ResponseEntity.ok(shortenedLinkResponse);
     }
 }
