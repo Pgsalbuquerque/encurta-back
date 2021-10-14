@@ -5,6 +5,7 @@ import java.util.Random;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -56,9 +57,10 @@ public class ShortenedLinkService {
 		return ResponseEntity.ok(shortenedLinkResponse);
 	}
 	
+	@Cacheable("shortened")
     public ResponseEntity<ShortenedLinkResponse> getOriginal(String shortened, HttpServletResponse response) {
     	ShortenedLink shortenedLink = shortenedLinkRepository.getByShortened(shortened);
-    	
+    	System.out.println("entrei");
     	if (shortenedLink == null) {
     		throw new ResponseException(HttpStatus.BAD_REQUEST, "Invalid Link");
     	}
